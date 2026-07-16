@@ -1,0 +1,32 @@
+{
+    "best_model": "Random Forest",
+    "accuracy": 99.89,
+    "precision": 95.82,
+    "recall": 97.75,
+    "f1_score": 96.78,
+    "all_models": {
+        "Random Forest": {
+            "accuracy": 99.89,
+            "precision": 95.82,
+            "recall": 97.75,
+            "f1_score": 96.78,
+            "roc_auc": 0.999
+        },
+        "Decision Tree": {
+            "accuracy": 99.74,
+            "precision": 87.47,
+            "recall": 97.69,
+            "f1_score": 92.29,
+            "roc_auc": 0.9882
+        },
+        "Extra Trees": {
+            "accuracy": 95.47,
+            "precision": 25.51,
+            "recall": 93.85,
+            "f1_score": 40.11,
+            "roc_auc": 0.9915
+        }
+    },
+    "fraud_cases": 8213,
+    "safe_cases": 500000
+}

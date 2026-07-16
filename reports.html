@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI-PDS Reports & Analytics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#eef3fb;
+color:#333;
+}
+
+.header{
+
+background:linear-gradient(135deg,#0f172a,#2563eb);
+
+padding:35px;
+
+text-align:center;
+
+color:white;
+
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.header h1{
+
+font-size:34px;
+
+margin-bottom:8px;
+
+}
+
+.header p{
+
+opacity:.9;
+
+}
+
+.container{
+
+width:92%;
+
+max-width:1400px;
+
+margin:35px auto;
+
+}
+
+/* KPI CARDS */
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:22px;
+
+margin-bottom:30px;
+
+}
+
+.card{
+
+background:white;
+
+padding:28px;
+
+border-radius:18px;
+
+text-align:center;
+
+box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.card h3{
+
+color:#64748b;
+
+margin-bottom:10px;
+
+}
+
+.card h1{
+
+color:#2563eb;
+
+font-size:34px;
+
+}
+
+/* GRID */
+
+.grid{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:25px;
+
+margin-bottom:30px;
+
+}
+
+.section{
+
+background:white;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.section h2{
+
+color:#2563eb;
+
+margin-bottom:20px;
+
+}
+
+/* TABLE */
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+th{
+
+background:#2563eb;
+
+color:white;
+
+padding:14px;
+
+}
+
+td{
+
+padding:13px;
+
+text-align:center;
+
+border-bottom:1px solid #eee;
+
+}
+
+tr:hover{
+
+background:#f8fbff;
+
+}
+
+/* WINNER */
+
+.winner{
+
+text-align:center;
+
+}
+
+.winner h3{
+
+font-size:28px;
+
+margin:15px 0;
+
+color:#2563eb;
+
+}
+
+.badge{
+
+display:inline-block;
+
+padding:8px 18px;
+
+background:#16a34a;
+
+color:white;
+
+border-radius:25px;
+
+margin-top:15px;
+
+font-weight:bold;
+
+}
+
+/* ANALYSIS SECTION */
+
+.analysis{
+
+display:grid;
+
+grid-template-columns:2fr 1fr;
+
+gap:25px;
+
+margin-bottom:30px;
+
+}
+
+.chart-panel{
+
+background:white;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.summary-panel{
+
+background:white;
+
+padding:25px;
+
+border-radius:18px;
+
+box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+}
+
+.summary-panel h2{
+
+color:#2563eb;
+
+margin-bottom:20px;
+
+}
+
+.summary-item{
+
+display:flex;
+
+gap:15px;
+
+margin-bottom:22px;
+
+align-items:flex-start;
+
+}
+
+.summary-icon{
+
+font-size:24px;
+
+}
+
+.summary-text b{
+
+display:block;
+
+margin-bottom:4px;
+
+}
+
+.summary-text{
+
+line-height:1.6;
+
+font-size:15px;
+
+}
+
+.status{
+
+margin-top:25px;
+
+padding:15px;
+
+background:#dcfce7;
+
+color:#166534;
+
+font-weight:bold;
+
+border-radius:10px;
+
+text-align:center;
+
+}
+
+/* BUTTONS */
+
+.buttons{
+
+text-align:center;
+
+margin-top:35px;
+
+}
+
+.buttons a{
+
+display:inline-block;
+
+padding:14px 28px;
+
+background:#2563eb;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+margin:8px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.buttons a:hover{
+
+background:#1d4ed8;
+
+transform:translateY(-3px);
+
+}
+
+/* FOOTER */
+
+.footer{
+
+margin-top:45px;
+
+background:#0f172a;
+
+color:white;
+
+text-align:center;
+
+padding:20px;
+
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.analysis{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+<h1>📊 AI-PDS Reports & Analytics</h1>
+
+<p>Machine Learning Model Evaluation Dashboard</p>
+
+</div>
+
+<div class="container">
+
+<!-- KPI CARDS -->
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Total Records Tested</h3>
+
+<h1>{{ fraud_cases + safe_cases }}</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Best Accuracy</h3>
+
+<h1>{{ accuracy }}%</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Models Trained</h3>
+
+<h1>{{ models|length }}</h1>
+
+</div>
+
+<div class="card">
+
+<h3>Fraud Cases</h3>
+
+<h1>{{ fraud_cases }}</h1>
+
+</div>
+
+</div>
+
+<!-- TABLE + WINNER -->
+
+<div class="grid">
+
+<div class="section">
+
+<h2>📊 Machine Learning Model Comparison</h2>
+
+<table>
+
+<tr>
+
+<th>Model</th>
+
+<th>Accuracy</th>
+
+<th>Precision</th>
+
+<th>Recall</th>
+
+<th>F1 Score</th>
+
+</tr>
+
+{% for model_name,data in models.items() %}
+
+<tr>
+
+<td><b>{{ model_name }}</b></td>
+
+<td>{{ data.accuracy }}%</td>
+
+<td>{{ data.precision }}%</td>
+
+<td>{{ data.recall }}%</td>
+
+<td>{{ data.f1_score }}%</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+<div class="section winner">
+
+<h2>🏆 Best Performing Model</h2>
+
+<h3>{{ best_model }}</h3>
+
+<p>Selected automatically after comparing all performance metrics.</p>
+
+<br>
+
+<h2 style="color:#16a34a">{{ accuracy }}%</h2>
+
+<span class="badge">
+
+✔ Selected For Fraud Prediction
+
+</span>
+
+</div>
+
+</div>
+
+<!-- BAR CHART + AI SUMMARY -->
+
+<div class="analysis">
+
+<div class="chart-panel">
+
+<h2>📈 Model Performance Comparison</h2>
+
+<canvas id="modelChart"></canvas>
+
+</div>
+
+<div class="summary-panel">
+
+<h2>🤖 AI Decision Summary</h2>
+
+<div class="summary-item">
+
+<div class="summary-icon">📂</div>
+
+<div class="summary-text">
+
+<b>Dataset Processed</b>
+
+The uploaded transaction dataset was successfully analysed.
+
+</div>
+
+</div>
+
+<div class="summary-item">
+
+<div class="summary-icon">🧠</div>
+
+<div class="summary-text">
+
+<b>{{ models|length }} Models Evaluated</b>
+
+Random Forest, Decision Tree and Extra Trees were trained.
+
+</div>
+
+</div>
+
+<div class="summary-item">
+
+<div class="summary-icon">🏆</div>
+
+<div class="summary-text">
+
+<b>{{ best_model }} Selected</b>
+
+Highest Accuracy, Precision, Recall and F1 Score.
+
+</div>
+
+</div>
+
+<div class="summary-item">
+
+<div class="summary-icon">🚀</div>
+
+<div class="summary-text">
+
+<b>Prediction Ready</b>
+
+The selected model is now used for fraud prediction.
+
+</div>
+
+</div>
+
+<div class="status">
+
+🟢 Analysis Completed Successfully
+
+</div>
+
+</div>
+
+</div>
+<!-- ================= BUTTONS ================= -->
+
+<div class="buttons">
+
+    <a href="/dashboard">
+        🏠 Dashboard
+    </a>
+
+    <a href="/upload">
+        📂 Analyze Another Dataset
+    </a>
+
+</div>
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<div class="footer">
+
+    <h3>AI-PDS Fraud Detection System</h3>
+
+    <p>Machine Learning Reports & Analytics Dashboard</p>
+
+    <br>
+
+    © 2026 All Rights Reserved
+
+</div>
+
+<!-- ================= MODEL DATA ================= -->
+
+<script id="models-data" type="application/json">
+{{ models | tojson | safe }}
+</script>
+
+<script>
+
+// ================= LOAD MODEL DATA =================
+
+const models = JSON.parse(
+document.getElementById("models-data").textContent
+);
+
+const labels = Object.keys(models);
+
+const accuracyData = labels.map(m => models[m].accuracy);
+const precisionData = labels.map(m => models[m].precision);
+const recallData = labels.map(m => models[m].recall);
+const f1Data = labels.map(m => models[m].f1_score);
+
+
+// ================= BAR CHART =================
+
+new Chart(document.getElementById("modelChart"),{
+
+type:"bar",
+
+data:{
+
+labels:labels,
+
+datasets:[
+
+{
+
+label:"Accuracy",
+
+data:accuracyData,
+
+backgroundColor:"#2563eb",
+
+borderRadius:10,
+
+borderSkipped:false
+
+},
+
+{
+
+label:"Precision",
+
+data:precisionData,
+
+backgroundColor:"#16a34a",
+
+borderRadius:10,
+
+borderSkipped:false
+
+},
+
+{
+
+label:"Recall",
+
+data:recallData,
+
+backgroundColor:"#f59e0b",
+
+borderRadius:10,
+
+borderSkipped:false
+
+},
+
+{
+
+label:"F1 Score",
+
+data:f1Data,
+
+backgroundColor:"#ef4444",
+
+borderRadius:10,
+
+borderSkipped:false
+
+}
+
+]
+
+},
+
+options:{
+
+responsive:true,
+
+maintainAspectRatio:true,
+
+animation:{
+
+duration:1800,
+
+easing:"easeOutQuart"
+
+},
+
+plugins:{
+
+legend:{
+
+position:"bottom",
+
+labels:{
+
+padding:20,
+
+font:{
+
+size:13,
+
+weight:"bold"
+
+}
+
+}
+
+},
+
+title:{
+
+display:true,
+
+text:"Performance Metrics Comparison",
+
+font:{
+
+size:18,
+
+weight:"bold"
+
+}
+
+},
+
+tooltip:{
+
+backgroundColor:"#0f172a",
+
+titleFont:{
+
+size:14
+
+},
+
+bodyFont:{
+
+size:13
+
+},
+
+padding:12,
+
+cornerRadius:10
+
+}
+
+},
+
+scales:{
+
+x:{
+
+grid:{
+
+display:false
+
+},
+
+ticks:{
+
+font:{
+
+weight:"bold"
+
+}
+
+}
+
+},
+
+y:{
+
+beginAtZero:true,
+
+max:100,
+
+ticks:{
+
+stepSize:10
+
+},
+
+grid:{
+
+color:"#e5e7eb"
+
+}
+
+}
+
+}
+
+}
+
+});
+
+
+// ================= CARD ANIMATION =================
+
+const cards=document.querySelectorAll(".card");
+
+cards.forEach((card,index)=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(30px)";
+
+setTimeout(()=>{
+
+card.style.transition="0.6s";
+
+card.style.opacity="1";
+
+card.style.transform="translateY(0)";
+
+},index*150);
+
+});
+
+
+// ================= AI SUMMARY ANIMATION =================
+
+const items=document.querySelectorAll(".summary-item");
+
+items.forEach((item,index)=>{
+
+item.style.opacity="0";
+
+item.style.transform="translateX(20px)";
+
+setTimeout(()=>{
+
+item.style.transition=".5s";
+
+item.style.opacity="1";
+
+item.style.transform="translateX(0)";
+
+},600+(index*250));
+
+});
+
+</script>
+
+</body>
+
+</html>

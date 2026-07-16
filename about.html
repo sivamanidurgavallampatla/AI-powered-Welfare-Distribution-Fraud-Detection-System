@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | AI-PDS</title>
+
+<style>
+
+/* ================= BASE ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: #f5f7fb;
+    color: #333;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ================= NAV ================= */
+nav {
+    background: #0f172a;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    align-items: center;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+nav ul li a:hover {
+    color: #2563eb;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+    height: 42vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #0f172a, #2563eb);
+    color: white;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    max-width: 750px;
+    margin-top: 15px;
+    line-height: 1.6;
+}
+
+/* ================= SECTION ================= */
+.section {
+    padding: 60px 8%;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #2563eb;
+}
+
+/* ================= IMAGE SECTION ================= */
+.image-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 60px 8%;
+    background: #ffffff;
+    align-items: center;
+}
+
+.image-section img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 18px;
+}
+
+.image-content {
+    flex: 1;
+}
+
+.image-content h2 {
+    color: #2563eb;
+    margin-bottom: 15px;
+}
+
+/* ================= GRID ================= */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+}
+
+/* ================= TECH ================= */
+.tech-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.tech-item {
+    width: 130px;
+    height: 130px;
+    background: #ffffff;
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+}
+
+.tech-item img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.tech-item span {
+    margin-top: 8px;
+    font-weight: 600;
+    color: #2563eb;
+}
+
+.tech-item:hover {
+    transform: translateY(-6px);
+}
+
+/* ================= CTA ================= */
+.cta-box {
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    padding: 50px;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+}
+
+.cta-box h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.cta-box p {
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    background: white;
+    color: #2563eb;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+/* Remove default list styling */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Parent dropdown */
+.login-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Login button */
+.login-dropdown > a {
+    display: block;
+    padding: 12px 18px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Dropdown menu (hidden by default) */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 180px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    padding: 5px 0;
+}
+
+/* Dropdown items */
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background 0.3s;
+}
+
+/* Hover effect on items */
+.dropdown-menu li a:hover {
+    background: #f0f0f0;
+}
+
+/* Show dropdown on hover */
+.login-dropdown:hover .dropdown-menu {
+    display: block;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">🏛 AI Powered Public Distribution Fraud Detection System</div>
+
+<ul>
+
+<li class="login-dropdown">
+    <a href="#">Login ▾</a>
+
+    <ul class="dropdown-menu">
+        <li><a href="/login">👤 User Login</a></li>
+        <li><a href="/admin_login">🛡️ Admin Login</a></li>
+    </ul>
+</li>
+</ul>
+
+
+
+</nav>
+
+<section class="hero">
+    <h1>Project Overview & Technical Architecture</h1>
+    <p>
+        An AI-enabled governance platform designed for fraud detection,
+        transparency and monitoring of Public Distribution Systems.
+    </p>
+</section>
+
+<section class="image-section">
+
+    <img src="{{ url_for('static', filename='image1.png') }}">
+
+    <div class="image-content">
+        <h2>Proposed Solution</h2>
+        <p>
+            The AI-PDS system uses machine learning to detect anomalies,
+            analyze transaction behavior, and improve transparency in governance.
+            It integrates predictive analytics and intelligent monitoring tools.
+        </p>
+    </div>
+    <!-- <a href="chatbot.html"></a> -->
+</section>
+
+<section class="section">
+
+    <h2 class="section-title">Machine Learning Models Used</h2>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>🌲 Random Forest</h3>
+            <p>Primary fraud detection model for high accuracy classification.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌳 Decision Tree</h3>
+            <p>Provides interpretable decision paths for analysis.</p>
+        </div>
+
+        <div class="card">
+            <h3>🌿 Extra Trees</h3>
+            <p>Improves speed and performance using ensemble learning.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2 class="section-title">Technologies Used</h2>
+
+    <div class="tech-icons">
+
+        <div class="tech-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
+            <span>Python</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg">
+            <span>HTML5</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg">
+            <span>CSS3</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+            <span>JavaScript</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png">
+            <span>Machine Learning</span>
+        </div>
+        <div class="tech-item">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png">
+            <span>AI</span>
+        </div>
+
+        <div class="tech-item">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg">
+            <span>Flask</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<footer>
+    <p>© 2026 AI-PDS Fraud Detection System</p>
+</footer>
+
+</body>
+</html>

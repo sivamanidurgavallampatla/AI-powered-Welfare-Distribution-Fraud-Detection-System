@@ -1,0 +1,2 @@
+Transaction_Step,Quantity_Distributed,Dealer_Stock_Before,Dealer_Stock_After,Beneficiary_Stock_Before,Beneficiary_Stock_After
+1,25000,100000,75000,10000,35000

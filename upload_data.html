@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Upload Dataset | AI-PDS Fraud Detection</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+}
+
+.header{
+    background:#0f172a;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.card h1{
+    text-align:center;
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.card p{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
+}
+
+.upload-box{
+    border:3px dashed #2563eb;
+    border-radius:15px;
+    padding:40px;
+    text-align:center;
+    background:#f8fbff;
+}
+
+.upload-box h3{
+    color:#1e40af;
+    margin-bottom:15px;
+}
+
+input[type="file"]{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:8px;
+    background:white;
+}
+
+.btn{
+    display:inline-block;
+    margin-top:25px;
+    background:#2563eb;
+    color:white;
+    padding:14px 30px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    background:#1d4ed8;
+}
+
+.info{
+    margin-top:30px;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.info h3{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.info ul{
+    padding-left:25px;
+    line-height:2;
+}
+
+.navigation{
+    margin-top:25px;
+    text-align:center;
+}
+
+.navigation a{
+    text-decoration:none;
+    margin:10px;
+    color:#2563eb;
+    font-weight:bold;
+}
+
+.footer{
+    background:#0f172a;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>AI-PDS Fraud Detection System</h1>
+</div>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>📂 Upload Transaction Dataset</h1>
+
+        <p>
+            Upload a CSV file containing transaction records for AI-powered fraud analysis.
+        </p>
+
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+
+            <div class="upload-box">
+
+                <h3>Select Dataset File</h3>
+
+                <input type="file" name="file" accept=".csv" required>
+
+            </div>
+
+            <center>
+                <button type="submit" class="btn">
+                    🤖 Analyze Fraud
+                </button>
+            </center>
+
+        </form>
+
+    </div>
+
+    <div class="info">
+
+        <h3>Supported Dataset Format</h3>
+
+        <ul>
+            <li>CSV Files (.csv)</li>
+            <li>PaySim Financial Transaction Dataset</li>
+            <li>Transaction Amount Information</li>
+            <li>Account Balance Details</li>
+            <li>Fraud Detection Analysis</li>
+            <li>AI-Based Risk Prediction</li>
+        </ul>
+
+    </div>
+
+    <div class="navigation">
+
+        <a href="/dashboard">← Dashboard</a>
+
+        <a href="/">🏠 Home</a>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    © 2026 AI-PDS Fraud Detection System
+</div>
+
+</body>
+</html>

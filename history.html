@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload History</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #eef3fb;
+    padding: 30px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.fraud {
+    color: red;
+    font-weight: bold;
+}
+
+.safe {
+    color: green;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>📊 Your Past Uploads</h1>
+
+{% for u in uploads %}
+
+<div class="card">
+
+<h3>📁 {{ u.filename }}</h3>
+
+<p>📅 {{ u.upload_date }}</p>
+
+<p>🔢 Total: {{ u.total_records }}</p>
+
+<p class="fraud">🚨 Fraud: {{ u.fraud_count }}</p>
+
+<p class="safe">✅ Safe: {{ u.safe_count }}</p>
+
+</div>
+
+{% endfor %}
+
+</body>
+</html>

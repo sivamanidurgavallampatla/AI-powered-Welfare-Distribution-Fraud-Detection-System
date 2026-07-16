@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI-PDS Fraud Detection System</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f8fbff;
+    color:#1e293b;
+}
+
+/* NAVBAR */
+
+nav{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:white;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 2px 20px rgba(0,0,0,0.06);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:#1e40af;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:30px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:#334155;
+    font-weight:500;
+    transition:.3s;
+}
+
+nav ul li a:hover{
+    color:#2563eb;
+}
+
+/* HERO */
+
+.hero{
+    min-height:90vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:80px 8%;
+    background:linear-gradient(180deg,#ffffff,#edf5ff);
+    flex-wrap:wrap;
+    gap:50px;
+}
+
+.hero-content{
+    flex:1;
+    min-width:300px;
+}
+
+.hero-content span{
+    display:inline-block;
+    background:#dbeafe;
+    color:#1e40af;
+    padding:10px 18px;
+    border-radius:30px;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.hero-content h1{
+    font-size:60px;
+    line-height:1.15;
+    margin-bottom:20px;
+    color:#0f172a;
+}
+
+.hero-content p{
+    font-size:18px;
+    line-height:1.8;
+    color:#475569;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:50px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.primary{
+    background:#1e40af;
+    color:white;
+}
+
+.primary:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(37,99,235,.25);
+}
+
+.secondary{
+    background:white;
+    color:#1e40af;
+    border:2px solid #1e40af;
+}
+
+.secondary:hover{
+    transform:translateY(-4px);
+}
+
+.hero-image{
+    flex:1;
+    min-width:300px;
+    text-align:center;
+}
+
+.hero-image img{
+    width:100%;
+    max-width:550px;
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+
+/* STATS */
+
+.stats{
+    padding:70px 8%;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.stat-card{
+    background:white;
+    padding:35px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+    transition:.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-8px);
+}
+
+.stat-card h2{
+    color:#1e40af;
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+    color:#0f172a;
+}
+
+.features{
+    padding:80px 8%;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.05);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+}
+
+.icon{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#1e40af;
+    margin-bottom:12px;
+}
+
+.card p{
+    line-height:1.8;
+    color:#64748b;
+}
+
+#themeToggle{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#1e40af;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+}
+/* Login Dropdown */
+
+.login-dropdown{
+    position: relative;
+}
+
+.dropdown-menu{
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: white;
+    min-width: 180px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 999;
+}
+
+.dropdown-menu li{
+    width: 100%;
+}
+
+.dropdown-menu li a{
+    display: block;
+    padding: 12px 15px;
+    color: black;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover{
+    background: #f1f1f1;
+}
+
+.login-dropdown:hover .dropdown-menu{
+    display: block;
+}
+/* ================= DATASET TEMPLATE ================= */
+
+.template-container{
+
+    width:90%;
+    max-width:650px;
+    margin:80px auto;
+    background:#fff;
+    border-radius:25px;
+    padding:28px;
+    box-shadow:0 20px 50px rgba(30,64,175,.08);
+
+}
+
+.template-header{
+
+    text-align:center;
+    margin-bottom:35px;
+
+}
+
+.template-header h2{
+
+    font-size:26px;
+    color:#1e40af;
+    margin-bottom:15px;
+
+}
+
+.template-header p{
+
+    color:#64748b;
+    line-height:1.8;
+    font-size:17px;
+
+}
+
+.download-btn{
+
+    display:block;
+    width:220px;
+    margin:0 auto 40px;
+    text-align:center;
+
+    background:#1e40af;
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.download-btn:hover{
+
+    background:#2563eb;
+    transform:translateY(-4px);
+
+}
+
+.guide-box{
+
+    background:#f8fbff;
+    border-radius:18px;
+    padding:30px;
+
+}
+
+.guide-box h3{
+
+    text-align:center;
+    color:#1e40af;
+    margin-bottom:25px;
+
+}
+
+.guide-item{
+
+    display:flex;
+    align-items:center;
+
+    gap:18px;
+
+    margin:10px 0;
+
+    background:white;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+
+}
+
+.guide-item span{
+
+    font-size:28px;
+
+}
+
+.guide-item p{
+
+    margin:0;
+    color:#475569;
+    font-weight:500;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">🏛 AI Powered Public Distribution Fraud Detection System</div>
+
+<ul>
+<li><a href="/about">About</a></li>
+
+<li><a href="#dataset-template">📥 Dataset Template</a></li>
+<li class="login-dropdown">
+    <a href="#">Login ▾</a>
+
+    <ul class="dropdown-menu">
+        <li><a href="/login">👤 User Login</a></li>
+        <li><a href="/admin_login">🛡️ Admin Login</a></li>
+    </ul>
+</li>
+</ul>
+
+
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-content">
+
+<span>AI Enabled Governance & Fraud Monitoring</span>
+
+<h1>
+Ensuring Fair Distribution Through Intelligent Monitoring
+</h1>
+
+<p>
+AI-powered Public Distribution System Fraud Detection platform
+designed to identify suspicious transactions, detect anomalies,
+monitor dealer activities and improve transparency in welfare schemes.
+</p>
+
+
+</div>
+
+<div class="hero-image">
+
+<img src="{{ url_for('static', filename='image.png') }}">
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="stat-card">
+<h2>98%</h2>
+<p>Detection Accuracy</p>
+</div>
+
+<div class="stat-card">
+<h2>24/7</h2>
+<p>Monitoring Support</p>
+</div>
+
+<div class="stat-card">
+<h2>AI</h2>
+<p>Risk Analysis Engine</p>
+</div>
+
+<div class="stat-card">
+<h2>100%</h2>
+<p>Transparency Focus</p>
+</div>
+
+</section>
+
+<section class="features" id="features">
+
+<h2 class="section-title">
+Core System Features
+</h2>
+
+<div class="feature-grid">
+
+<div class="card">
+<div class="icon">🤖</div>
+<h3>AI Fraud Detection</h3>
+<p>Machine learning models identify suspicious transaction behaviour and anomalies.</p>
+</div>
+
+<div class="card">
+<div class="icon">📊</div>
+<h3>Analytics Dashboard</h3>
+<p>Interactive visualizations for fraud trends and system performance.</p>
+</div>
+
+
+<div class="card">
+<div class="icon">🏪</div>
+<h3>Dealer Monitoring</h3>
+<p>Track and evaluate dealer activities across distribution centres.</p>
+</div>
+
+
+
+<div class="card">
+<div class="icon">🔒</div>
+<h3>Secure Access</h3>
+<p>Provides secure authentication for administrators and users.</p>
+</div>
+
+</div>
+
+</section>
+<div class="template-container" id="dataset-template">
+
+    <div class="template-header">
+        <h2>📥 Download Dataset Template</h2>
+        <p>
+            First time using AI-PDS? Download the official dataset template,
+            fill in your records, and upload it for accurate fraud prediction.
+        </p>
+    </div>
+
+    <a href="{{ url_for('static', filename='sample_dataset.csv') }}"
+       class="download-btn"
+       download>
+       ⬇ Download Template
+    </a>
+
+    <div class="guide-box">
+    <h3>📋 Quick Guide</h3>
+    <p>
+        Download the template, fill in the dataset without changing column names, save it as a CSV file, and upload it to start the fraud prediction process.
+    </p>
+</div>
+
+</div>
+
+<!-- <section class= 'benefits' style="
+padding:90px 8%;
+background:linear-gradient(180deg,#f8fbff,#eef5ff);">
+
+<h2 class="section-title">
+Governance Benefits
+</h2>
+
+<div style="
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;">
+
+<div class="card">
+<div class="icon">✔️</div>
+<h3>Enhanced Transparency</h3>
+<p>Improves visibility across Public Distribution System operations and beneficiary records.</p>
+</div>
+
+<div class="card">
+<div class="icon">⚡</div>
+<h3>Faster Investigations</h3>
+<p>Enables authorities to quickly identify and investigate suspicious transactions.</p>
+</div>
+
+<div class="card">
+<div class="icon">🛡️</div>
+<h3>Fraud Prevention</h3>
+<p>Helps prevent misuse of resources and protects welfare distribution programs.</p>
+</div>
+
+<div class="card">
+<div class="icon">📊</div>
+<h3>Data-Driven Decisions</h3>
+<p>Provides meaningful analytics for policy planning and governance improvements.</p>
+</div>
+
+</div>
+
+</section>
+ -->
+
+
+
+
+<footer style="
+background:#0f172a;
+color:white;
+padding:50px 8%;
+text-align:center;">
+
+<h3 style="margin-bottom:10px;">
+🏛 AI-PDS Fraud Detection System
+</h3>
+
+<p style="
+color:#cbd5e1;
+margin-bottom:15px;">
+
+AI-Powered Monitoring & Fraud Detection for Public Distribution Systems
+
+</p>
+
+<p style="
+color:#94a3b8;
+font-size:14px;">
+
+© 2026 AI-PDS Fraud Detection System | Supporting Transparent Governance Through Technology
+
+</p>
+
+</footer>
+
+<style>
+
+@media(max-width:768px){
+
+.hero{
+text-align:center;
+}
+
+.hero-content h1{
+font-size:42px;
+}
+.about{
+    padding:90px 8%;
+    background:#f8fbff;
+}
+
+.dark-mode .about{
+    background:#0f172a;
+}
+.hero-buttons{
+justify-content:center;
+}
+
+nav{
+flex-direction:column;
+gap:15px;
+}
+
+nav ul{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.section-title{
+font-size:30px;
+}
+
+}
+</style>
+
+<script>
+
+const cards=document.querySelectorAll('.card,.stat-card');
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity='1';
+entry.target.style.transform='translateY(0)';
+
+}
+
+});
+
+});
+
+cards.forEach(card=>{
+
+card.style.opacity='0';
+card.style.transform='translateY(40px)';
+card.style.transition='all .8s ease';
+
+observer.observe(card);
+
+});
+
+</script>
+
+</body>
+</html>
+

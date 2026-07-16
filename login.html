@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dealer Login | AI-PDS</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e40af);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+/* CARD */
+.login-container{
+width:420px;
+background:#ffffff;
+padding:40px;
+border-radius:18px;
+box-shadow:0 20px 50px rgba(0,0,0,0.35);
+}
+
+/* ICON */
+.logo{
+text-align:center;
+font-size:60px;
+margin-bottom:10px;
+}
+
+/* TITLE */
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:10px;
+}
+
+/* SUBTITLE */
+.subtitle{
+text-align:center;
+color:#666;
+margin-bottom:25px;
+}
+
+/* FORM */
+.form-group{
+margin-bottom:18px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+color:#111;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:15px;
+outline:none;
+transition:0.2s;
+}
+
+input:focus{
+border-color:#2563eb;
+box-shadow:0 0 8px rgba(37,99,235,0.3);
+}
+
+/* BUTTON */
+.login-btn{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+transition:0.2s;
+}
+
+.login-btn:hover{
+transform:translateY(-2px);
+background:#1d4ed8;
+}
+
+/* LINKS */
+.links{
+margin-top:15px;
+display:flex;
+justify-content:space-between;
+}
+
+.links a{
+text-decoration:none;
+color:#2563eb;
+font-size:14px;
+}
+
+/* BACK */
+.back{
+text-align:center;
+margin-top:20px;
+}
+
+.back a{
+text-decoration:none;
+color:#2563eb;
+font-weight:bold;
+}
+
+/* FOOTER */
+.footer{
+margin-top:20px;
+text-align:center;
+font-size:13px;
+color:#666;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+<div class="logo">🏪</div>
+
+<h1>Dealer Login</h1>
+
+<p class="subtitle">AI-PDS Fraud Detection System</p>
+
+<form action="/login" method="POST">
+{% if error %}
+<div style="background:#fee2e2;color:#b91c1c;padding:10px;border-radius:8px;margin-bottom:15px;text-align:center;">
+    {{ error }}
+</div>
+{% endif %}
+<div class="form-group">
+<label>Email Address</label>
+<input type="email"
+       name="email"
+       placeholder="Enter Email Address"
+       required>
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input type="password"
+       name="password"
+       placeholder="Enter Password"
+       required>
+</div>
+
+<button type="submit" class="login-btn">
+Login
+</button>
+
+</form>
+
+<div class="links">
+<a href="/forgot_password">Forgot Password?</a>
+<a href="/register">Create Account</a>
+</div>
+
+<div class="back">
+<a href="/about">← Back to About Page</a>
+</div>
+
+<div class="footer">
+© 2026 AI-PDS Fraud Detection System
+</div>
+
+</div>
+
+
+</body>
+</html>
